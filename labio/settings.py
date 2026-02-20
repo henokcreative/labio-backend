@@ -27,8 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-^ut_2)(-tv66#07eam8dr
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['labio-backend.onrender.com', 'localhost', '127.0.0.1']
-
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 # Application definition
 
