@@ -17,7 +17,7 @@ def submit_contact(request):
             subject=f"New contact from {request.data.get('name')}",
             message=f"Name: {request.data.get('name')}\nEmail: {request.data.get('email')}\nMessage: {request.data.get('message')}",
             from_email=None,
-            recipient_list=['henok.karvonen@gmail.fi'],
+            recipient_list=['henok.karvonen@utu.fi'],
         )
         return Response({'message': 'Message received!'}, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
