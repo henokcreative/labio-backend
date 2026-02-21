@@ -19,7 +19,7 @@ def submit_contact(request):
         try:
             resend.Emails.send({
                 "from": "onboarding@resend.dev",
-                "to": "henok.karvonen@utu.fi",
+                "to": "henok.karvonen@gmail.com",
                 "subject": f"New contact from {request.data.get('name')}",
                 "text": f"Name: {request.data.get('name')}\nEmail: {request.data.get('email')}\nMessage: {request.data.get('message')}"
             })
