@@ -4,6 +4,7 @@ charset-normalizer==3.4.4
 cloudinary==1.44.1
 Django==5.2.11
 django-cloudinary-storage==0.3.0
+django-cors-headers==4.9.0
 djangorestframework==3.16.1
 gunicorn==25.1.0
 idna==3.11
