@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'clients',
     'contacts',
     'corsheaders',
+    'messaging'
 
 ]
 
