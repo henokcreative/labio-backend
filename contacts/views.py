@@ -1,3 +1,13 @@
+from django.shortcuts import render
+
+# Create your views here.
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from django.core.mail import send_mail
+from .models import ContactMessage
+from .serializers import ContactMessageSerializer
+
 @api_view(['POST'])
 def submit_contact(request):
     serializer = ContactMessageSerializer(data=request.data)
