@@ -10,6 +10,13 @@ from .serializers import ConversationSerializer, MessageSerializer
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
+def get_conversations(request):
+    conversations = Conversation.objects.filter(client=request.user)
+    serializer = ConversationSerializer(conversations, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def unread_count(request):
     count = Message.objects.filter(
         conversation__client=request.user,
