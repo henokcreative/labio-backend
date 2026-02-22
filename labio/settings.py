@@ -155,6 +155,7 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 CORS_ALLOWED_ORIGINS = [
     'https://labiomedia.vercel.app',
+    'http://localhost:3000',
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

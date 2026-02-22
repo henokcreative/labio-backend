@@ -1,7 +1,12 @@
 from django.contrib import admin
-
-# Register your models here.
 from .models import Conversation, Message
 
-admin.site.register(Conversation)
+class MessageInline(admin.TabularInline):
+    model = Message
+    extra = 0
+
+@admin.register(Conversation)
+class ConversationAdmin(admin.ModelAdmin):
+    inlines = [MessageInline]
+
 admin.site.register(Message)
