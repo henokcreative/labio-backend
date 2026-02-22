@@ -1,11 +1,9 @@
 from django.db import models
-
-# Create your models here.
-
 from django.contrib.auth.models import User
 
 class Conversation(models.Model):
     client = models.ForeignKey(User, on_delete=models.CASCADE, related_name='conversations')
+    assigned_staff = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='assigned_conversations')
     subject = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
