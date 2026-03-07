@@ -108,42 +108,17 @@ WSGI_APPLICATION = 'labio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# Check if DATABASE_URL is set (works for Render, Railway, Heroku, etc.)
-DATABASE_URL = os.environ.get('DATABASE_URL')
-
-if DATABASE_URL:
-    # Production: Use the provided DATABASE_URL
-    try:
-        DATABASES = {
-            'default': dj_database_url.config(
-                default=DATABASE_URL,
-                conn_max_age=600
-            )
-        }
-    except Exception as e:
-        # Fallback to manual config if dj_database_url fails
-        DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.postgresql',
-                'NAME': 'labio_db_95ie',
-                'USER': 'labio_db_95ie_user',
-                'PASSWORD': 'jC4nqyZdfLJzHPiwJ7SohOULnHKTnOxb',
-                'HOST': 'dpg-d6cd5815pdvs738uq0s0-a',
-                'PORT': '5432',
-            }
-        }
-else:
-    # Fallback to manual config for Render (when DATABASE_URL is not set)
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'labio_db_95ie',
-            'USER': 'labio_db_95ie_user',
-            'PASSWORD': 'jC4nqyZdfLJzHPiwJ7SohOULnHKTnOxb',
-            'HOST': 'dpg-d6cd5815pdvs738uq0s0-a',
-            'PORT': '5432',
-        }
+# Force PostgreSQL configuration for production (Render)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'labio_db_95ie',
+        'USER': 'labio_db_95ie_user',
+        'PASSWORD': 'jC4nqyZdfLJzHPiwJ7SohOULnHKTnOxb',
+        'HOST': 'dpg-d6cd5815pdvs738uq0s0-a',
+        'PORT': '5432',
     }
+}
 
 
 # Password validation
