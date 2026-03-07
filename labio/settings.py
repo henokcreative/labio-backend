@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 import cloudinary
-import dj_database_url
 from pathlib import Path
 from datetime import timedelta
 from dotenv import load_dotenv
