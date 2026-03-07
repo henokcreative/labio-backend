@@ -108,11 +108,23 @@ WSGI_APPLICATION = 'labio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=f'sqlite:///{BASE_DIR / "db.sqlite3"}'
-    )
-}
+# Check if we're on Render (production)
+if os.environ.get('RENDER'):
+    # On Render, use PostgreSQL
+    DATABASES = {
+        'default': dj_database_url.config(
+            default='postgresql://user:password@localhost:5432/dbname',
+            conn_max_age=600
+        )
+    }
+else:
+    # Local development - use SQLite
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation

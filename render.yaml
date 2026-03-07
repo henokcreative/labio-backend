@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: labio-backend
+    runtime: python3
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate --run-syncdb"
+    startCommand: "gunicorn labio.wsgi:application --bind 0.0.0.0:$PORT"
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: false
+      - key: ALLOWED_HOSTS
+        fromSecret: allowed-hosts
+      - key: CLOUDINARY_CLOUD_NAME
+        fromSecret: cloudinary-cloud-name
+      - key: CLOUDINARY_API_KEY
+        fromSecret: cloudinary-api-key
+      - key: CLOUDINARY_API_SECRET
+        fromSecret: cloudinary-api-secret
+      - key: RESEND_API_KEY
+        fromSecret: resend-api-key
+      - key: CONTACT_EMAIL
+        fromSecret: contact-email
+      - key: DATABASE_URL
+        fromDatabaseUrl: true
