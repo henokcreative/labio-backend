@@ -122,8 +122,10 @@ if DATABASE_URL:
         }
         # Debug: Print database config (remove in production)
         print(f"Database configured: {DATABASES['default']['ENGINE']}")
+        print(f"DATABASE_URL found: {DATABASE_URL[:50]}...")
     except Exception as e:
         print(f"Database config error: {e}")
+        print(f"DATABASE_URL was: {DATABASE_URL}")
         # Fallback to manual config
         DATABASES = {
             'default': {
@@ -135,12 +137,18 @@ if DATABASE_URL:
                 'PORT': '5432',
             }
         }
+        print("Using fallback database config")
 else:
-    # Local development: Use SQLite
+    print("No DATABASE_URL found, using fallback")
+    # Fallback to manual config for Render
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'labio_db_95ie',
+            'USER': 'labio_db_95ie_user',
+            'PASSWORD': 'jC4nqyZdfLJzHPiwJ7SohOULnHKTnOxb',
+            'HOST': 'dpg-d6cd5815pdvs738uq0s0-a',
+            'PORT': '5432',
         }
     }
 
