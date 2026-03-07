@@ -120,13 +120,8 @@ if DATABASE_URL:
                 conn_max_age=600
             )
         }
-        # Debug: Print database config (remove in production)
-        print(f"Database configured: {DATABASES['default']['ENGINE']}")
-        print(f"DATABASE_URL found: {DATABASE_URL[:50]}...")
     except Exception as e:
-        print(f"Database config error: {e}")
-        print(f"DATABASE_URL was: {DATABASE_URL}")
-        # Fallback to manual config
+        # Fallback to manual config if dj_database_url fails
         DATABASES = {
             'default': {
                 'ENGINE': 'django.db.backends.postgresql',
@@ -137,10 +132,8 @@ if DATABASE_URL:
                 'PORT': '5432',
             }
         }
-        print("Using fallback database config")
 else:
-    print("No DATABASE_URL found, using fallback")
-    # Fallback to manual config for Render
+    # Fallback to manual config for Render (when DATABASE_URL is not set)
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
