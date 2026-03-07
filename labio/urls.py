@@ -18,13 +18,33 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
 from .serializers import CustomTokenObtainPairSerializer
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
+@api_view(['GET'])
+def api_root(request):
+    """API root endpoint - lists all available endpoints"""
+    return Response({
+        'message': 'Welcome to LaBioMedia API',
+        'version': '1.0',
+        'endpoints': {
+            'admin': '/admin/',
+            'contacts': '/api/contacts/',
+            'messaging': '/api/messaging/',
+            'auth': {
+                'login': '/api/auth/login/',
+                'refresh': '/api/auth/refresh/',
+            }
+        }
+    })
+
 urlpatterns = [
+    path('', api_root, name='api_root'),
     path('admin/', admin.site.urls),
     path('api/contacts/', include('contacts.urls')),
     path('api/messaging/', include('messaging.urls')),

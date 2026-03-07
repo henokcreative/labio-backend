@@ -14,6 +14,10 @@ import cloudinary
 import dj_database_url
 from pathlib import Path
 from datetime import timedelta
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 
@@ -32,7 +36,9 @@ REST_FRAMEWORK = {
     ),
 }
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-^ut_2)(-tv66#07eam8drj80u!*ocbr)zm2=b%sct-)o962t12')
+SECRET_KEY = os.environ.get('SECRET_KEY')
+if not SECRET_KEY:
+    raise ValueError("SECRET_KEY environment variable is not set. Please set it for security.")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
@@ -60,9 +66,9 @@ INSTALLED_APPS = [
 ]
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('dfgpfzpno'),
-    'API_KEY': os.environ.get('896845612842794'),
-    'API_SECRET': os.environ.get('LJO0gUZNoBcaxrPu9HQ79uIcFQk'),
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
