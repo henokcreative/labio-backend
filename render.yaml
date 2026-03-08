@@ -21,6 +21,8 @@ services:
         fromSecret: resend-api-key
       - key: CONTACT_EMAIL
         fromSecret: contact-email
+      - key: DJANGO_SETTINGS_MODULE
+        value: labio.settings
     databases:
       - name: labio-db
         databaseName: labio_db
