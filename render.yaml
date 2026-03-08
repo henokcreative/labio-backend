@@ -21,8 +21,12 @@ services:
         fromSecret: resend-api-key
       - key: CONTACT_EMAIL
         fromSecret: contact-email
-    databases:
-      - name: labio-db
-        databaseName: labio-db
-        user: labio_user
-        plan: free
+      - key: DATABASE_URL
+        fromDatabase:
+          name: labio-db
+          property: connectionString
+
+databases:
+  - name: labio-db
+    databaseName: labio_db_95ie
+    user: labio_db_95ie_user
