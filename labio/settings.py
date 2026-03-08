@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
+import dj_database_url
 import cloudinary
 from pathlib import Path
 from datetime import timedelta
@@ -63,6 +64,9 @@ INSTALLED_APPS = [
     'messaging'
 
 ]
+DATABASES = {
+    'default': dj_database_url.config(conn_max_age=600)
+}
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
