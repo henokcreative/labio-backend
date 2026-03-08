@@ -25,4 +25,3 @@ services:
       - name: labio-db
         databaseName: labio_db
         user: labio_user
-        plan: free
