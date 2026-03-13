@@ -20,6 +20,8 @@ from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from django.http import JsonResponse
+
 
 from .serializers import CustomTokenObtainPairSerializer
 
@@ -43,6 +45,11 @@ def api_root(request):
         }
     })
 
+
+def health_check(request):
+    return JsonResponse({"status": "ok"})
+
+
 urlpatterns = [
     path('', api_root, name='api_root'),
     path('admin/', admin.site.urls),
@@ -50,4 +57,6 @@ urlpatterns = [
     path('api/messaging/', include('messaging.urls')),
     path('api/auth/login/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+        path('health/', health_check),
+
 ]
