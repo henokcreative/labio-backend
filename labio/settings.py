@@ -115,18 +115,6 @@ WSGI_APPLICATION = 'labio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# Force PostgreSQL configuration for production (Render)
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'labio_db_95ie',
-        'USER': 'labio_db_95ie_user',
-        'PASSWORD': 'jC4nqyZdfLJzHPiwJ7SohOULnHKTnOxb',
-        'HOST': 'dpg-d6cd5815pdvs738uq0s0-a',
-        'PORT': '5432',
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
